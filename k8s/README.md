@@ -35,12 +35,7 @@ kubectl apply -f ingress/
 
 ### Despliegue completo (un solo comando)
 ```bash
-kubectl apply -f namespace/ && \
-kubectl apply -f database/ && \
-kubectl wait --for=condition=ready pod -l app=postgres -n ebpf-poc --timeout=120s && \
-kubectl apply -f java17-service/ && \
-kubectl wait --for=condition=ready pod -l app=java17-service -n ebpf-poc --timeout=120s && \
-kubectl apply -f java8-gateway/
+./deploy.sh
 ```
 
 ## Verificación
