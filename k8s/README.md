@@ -119,7 +119,18 @@ kubectl get nodes -o wide
 
 Una vez tengas `$GATEWAY_URL` configurada:
 
-#### Health Check
+
+#### Script de Testing Automatizado
+```bash
+# Ejecutar el script de pruebas incluido
+./test.sh
+
+# Esto ejecutará todas las pruebas anteriores automáticamente
+```
+
+#### Testing manual
+
+##### Health Check
 ```bash
 curl $GATEWAY_URL/api/health
 
@@ -127,7 +138,7 @@ curl $GATEWAY_URL/api/health
 # {"status":"UP","service":"java8-gateway"}
 ```
 
-#### Crear Usuario
+##### Crear Usuario
 ```bash
 curl -X POST $GATEWAY_URL/api/users \
   -H "Content-Type: application/json" \
@@ -145,7 +156,7 @@ curl -X POST $GATEWAY_URL/api/users \
 # }
 ```
 
-#### Obtener Usuario
+##### Obtener Usuario
 ```bash
 # Obtener usuario con ID 1 (datos precargados)
 curl $GATEWAY_URL/api/users/1
@@ -161,7 +172,7 @@ curl $GATEWAY_URL/api/users/1
 # }
 ```
 
-#### Obtener Órdenes de un Usuario
+##### Obtener Órdenes de un Usuario
 ```bash
 curl $GATEWAY_URL/api/orders/1
 
@@ -192,7 +203,7 @@ curl $GATEWAY_URL/api/orders/1
 # }
 ```
 
-#### Provocar Errores Aleatorios
+##### Provocar Errores Aleatorios
 
 Los servicios tienen errores aleatorios inyectados (10-15% de probabilidad). Simplemente ejecuta múltiples requests:
 ```bash
@@ -212,15 +223,14 @@ done
 # ...
 ```
 
-#### Script de Testing Automatizado
-```bash
-# Ejecutar el script de pruebas incluido
-./test.sh
-
-# Esto ejecutará todas las pruebas anteriores automáticamente
-```
 
 ## Limpieza
+```bash
+./deploy.sh rm
+```
+
+O de forma manual
+
 ```bash
 # Eliminar todo
 kubectl delete namespace ebpf-poc
