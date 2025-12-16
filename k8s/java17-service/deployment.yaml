@@ -17,11 +17,11 @@ spec:
       labels:
         app: java17-service
         tier: backend
-        version: "1.0.0"
+        version: "1.0.1"
     spec:
       containers:
       - name: java17-service
-        image: m0r4a/java17-service:1.0.0
+        image: m0r4a/java17-service:1.0.1
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
